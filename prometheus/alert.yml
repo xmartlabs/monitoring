@@ -1,0 +1,11 @@
+groups:
+  - name: DemoAlerts
+    rules:
+      - alert: InstanceDown 
+        expr: up{job="services"} < 1 
+        for: 5m 
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets: [ 'alertmanager:9093' ]
